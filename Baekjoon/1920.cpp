@@ -1,43 +1,8 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
-#define SWAP(x, y, temp) (temp = x, x = y, y = temp)
-
-int Partition(int* list, int left, int right)
-{
-	int pivot, temp;
-	int first, last;
-
-	pivot = list[left];
-	first = left + 1;
-	last = right;
-	
-	while (first <= last)
-	{
-		while (first <= last && list[first] <= pivot)
-			first++;
-		while (first <= last && pivot <= list[last])
-			last--;
-		if (first < last)
-			SWAP(list[first], list[last], temp);
-	}
-	SWAP(list[left], list[last], temp);
-
-	return last;
-}
-
-void QuickSort(int* list, int left, int right)
-{
-	if (left < right)
-	{
-		int q = Partition(list, left, right);
-
-		QuickSort(list, left, q - 1);
-		QuickSort(list, q + 1, right);
-	}
-}
-
-void FindNum(int* sortedAry, int left, int right, int num)
+void BinarySearch(int* sortedAry, int left, int right, int num)
 {
 	if (left > right)
 	{
@@ -50,13 +15,16 @@ void FindNum(int* sortedAry, int left, int right, int num)
 	if (sortedAry[mid] == num)
 		cout << "1\n";
 	else if (sortedAry[mid] >= num)
-		FindNum(sortedAry, left, mid - 1, num);
+		BinarySearch(sortedAry, left, mid - 1, num);
 	else
-		FindNum(sortedAry, mid + 1, right, num);
+		BinarySearch(sortedAry, mid + 1, right, num);
 }
 
 int main()
 {
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr), cout.tie(nullptr);
+
 	int size, size2, num;
 	cin >> size;
 
@@ -67,7 +35,7 @@ int main()
 		array[i] = num;
 	}
 
-	QuickSort(array, 0, size - 1);
+	sort(array, array + size);
 
 	cin >> size2;
 	int* array2 = new int[size2];
@@ -80,7 +48,7 @@ int main()
 
 	for (int i = 0; i < size2; i++)
 	{
-		FindNum(array, 0, size-1, array2[i]);
+		BinarySearch(array, 0, size-1, array2[i]);
 	}
 	
 	return 0;
