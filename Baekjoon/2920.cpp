@@ -1,44 +1,11 @@
-#include <iostream>
-using namespace std;
+#include<stdio.h>
 
-int main()
-{
-	int num, temp;
-	cin >> num;
+int a, b;
 
-	if (num == 1)
-	{
-		for (int i = 0; i < 7; i++)
-		{
-			temp = num + 1;
-			cin >> num;
-			if (temp != num)
-				break;
-			if (i == 6)
-			{
-				cout << "ascending";
-				return 0;
-			}
-		}
-	}
-
-	else if (num == 8)
-	{
-		for (int i = 0; i < 7; i++)
-		{
-			temp = num - 1;
-			cin >> num;
-			if (temp != num)
-				break;
-			if (i == 6)
-			{
-				cout << "descending";
-				return 0;
-			}
-		}
-	}
-
-	cout << "mixed";
-
-	return 0;
+int main() {
+    for (int i = 0; i < 8; i++) {
+        scanf("%d", &a);
+        b = b * 10 + a;
+    }
+    printf("%s", b == 12345678 ? "ascending" : b == 87654321 ? "descending" : "mixed");
 }
