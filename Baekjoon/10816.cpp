@@ -2,36 +2,6 @@
 #include<algorithm>
 using namespace std;
 
-int First_Search(int* array, int start, int end, int m)
-{
-	int mid;
-	while (start <= end)
-	{
-		mid = (start + end) / 2;
-		
-		if (array[mid] < m)
-			start = mid + 1;
-		else
-			end = mid - 1;
-	}
-	return start;
-}
-
-int Last_Search(int* array, int start, int end, int m)
-{
-	int mid;
-	while (start <= end)
-	{
-		mid = (start + end) / 2;
-
-		if (array[mid] > m)
-			end = mid - 1;
-		else
-			start = mid + 1;
-	}
-	return start;
-}
-
 int main()
 {
 	ios::sync_with_stdio(false);
@@ -52,14 +22,9 @@ int main()
 
 	sort(array, array + n);
 
-	int first, last;
-
 	for (int i = 0; i < m; i++)
 	{
-		first = First_Search(array, 0, n - 1, array2[i]);
-		last = Last_Search(array, 0, n - 1, array2[i]);
-		cout << last - first;
-		cout << " ";
+		cout << upper_bound(array, array+n, array2[i]) - lower_bound(array, array + n, array2[i]) << " ";
 	}
 
 	return 0;
