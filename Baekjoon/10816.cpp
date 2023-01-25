@@ -14,10 +14,7 @@ int First_Search(int* array, int start, int end, int m)
 		else
 			end = mid - 1;
 	}
-	if (array[start] == m)
-		return start;
-	else
-		return -1;
+	return start;
 }
 
 int Last_Search(int* array, int start, int end, int m)
@@ -32,10 +29,7 @@ int Last_Search(int* array, int start, int end, int m)
 		else
 			start = mid + 1;
 	}
-	if (array[end] == m)
-		return end;
-	else
-		return -1;
+	return start;
 }
 
 int main()
@@ -63,14 +57,8 @@ int main()
 	for (int i = 0; i < m; i++)
 	{
 		first = First_Search(array, 0, n - 1, array2[i]);
-		if (first != -1)
-		{
-			last = Last_Search(array, 0, n - 1, array2[i]);
-			cout << last - first + 1;
-		}
-		else
-			cout << 0;
-
+		last = Last_Search(array, 0, n - 1, array2[i]);
+		cout << last - first;
 		cout << " ";
 	}
 
