@@ -5,8 +5,7 @@ using namespace std;
 int main() 
 {
 
-	int k, n;
-	long long cnt, best = 0;
+	int k, n, cnt, best = 0;
 	cin >> k >> n;
 
 	int* array = new int[k];
