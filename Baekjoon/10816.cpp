@@ -2,39 +2,40 @@
 #include<algorithm>
 using namespace std;
 
-void Search(int* array, int start, int end, int m)
+int First_Search(int* array, int start, int end, int m)
 {
-	int mid, temp, cnt = 0;
+	int mid;
 	while (start <= end)
 	{
 		mid = (start + end) / 2;
-		if (array[mid] == m)
-		{
-			cnt++;
-			temp = mid;
-			while (--temp >= 0)
-			{
-				if (array[temp] != m)
-					break;
-				cnt++;
-			}
-			temp = mid;
-			while (++temp <= end)
-			{
-				if (array[temp] != m)
-					break;
-				cnt++;
-			}
-			cout << cnt;
-			return;
-		}
-		else if (array[mid] < m)
+		
+		if (array[mid] < m)
 			start = mid + 1;
 		else
 			end = mid - 1;
 	}
-	cout << cnt;
-	return;
+	if (array[start] == m)
+		return start;
+	else
+		return -1;
+}
+
+int Last_Search(int* array, int start, int end, int m)
+{
+	int mid;
+	while (start <= end)
+	{
+		mid = (start + end) / 2;
+
+		if (array[mid] > m)
+			end = mid - 1;
+		else
+			start = mid + 1;
+	}
+	if (array[end] == m)
+		return end;
+	else
+		return -1;
 }
 
 int main()
@@ -57,9 +58,19 @@ int main()
 
 	sort(array, array + n);
 
+	int first, last;
+
 	for (int i = 0; i < m; i++)
 	{
-		Search(array, 0, n - 1, array2[i]);
+		first = First_Search(array, 0, n - 1, array2[i]);
+		if (first != -1)
+		{
+			last = Last_Search(array, 0, n - 1, array2[i]);
+			cout << last - first + 1;
+		}
+		else
+			cout << 0;
+
 		cout << " ";
 	}
 
