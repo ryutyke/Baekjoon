@@ -1,26 +1,32 @@
 #include <iostream>
 using namespace std;
 
-bool check(int n)
+bool notprime[1000001];
+
+void Eratos(int n)
 {
-	if (n == 1) return false;
-	for (int i = 2; i < n; i++)
+	notprime[1] = true;
+
+	for (int i = 2; i * i <= n; i++)
 	{
-		if (n % i == 0) return false;
+		if(!notprime[i])
+			for(int j = i * i; j <= n; j+=i)
+				if(!notprime[j]) notprime[j] = true;
 	}
-	return true;
 }
 
 int main()
 {
-	ios::sync_with_stdio(false); cin.tie(0);
-	
+	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+
 	int a, b;
 	cin >> a >> b;
 
+	Eratos(b);
+
 	for (int i = a; i <= b; i++)
 	{
-		if (check(i)) cout << i << "\n";
+		if (!notprime[i]) cout << i << "\n";
 	}
 
 	return 0;
