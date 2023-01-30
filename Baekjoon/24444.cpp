@@ -38,7 +38,7 @@ int main()
 		graph[b].push_back(a);
 	}
 
-	for (int i = 1; i <= n; i++) { sort(graph[i].begin(), graph[i].end()); }
+	for (int i = 1; i <= n; i++) { sort(graph[i].begin(), graph[i].end()); } // greater<>()
 
 	q.push(r);
 	while (!(q.empty()))
