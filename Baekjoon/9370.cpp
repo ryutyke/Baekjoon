@@ -1,3 +1,6 @@
+// 그냥 시작지점에서 다익스트라 돌린거 d, point1에서 다익스트라 돌린거 d,  point2에서 다익스트라 돌린거 d2 해서
+// min_dist 3개 저장해서    d[p1] + d1[p2] + d2[target]   ,    d[p2] + d2[p1] + d1[target]  이렇게 거리 더하기로 풀어도 될듯 
+
 #include<iostream>
 #include<queue>
 #include<vector>
