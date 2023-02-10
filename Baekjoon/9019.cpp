@@ -22,53 +22,12 @@ int S(int a)
 
 int L(int a)
 {
-	int record = a;
-	int digit = 0;
-	int digit_num[4];
-	int result = 0;
-	while (a > 0)
-	{
-		digit_num[digit++] = a % 10;
-		a /= 10;
-	}
-	if (digit == 0) { return 0; }
-	
-	int temp = pow(10, digit - 1);
-	result += (record % temp) * 10;
-	result += digit_num[digit-1];
-
-	/*for (int i = 0; i < digit-1; i++)
-	{
-		result += (digit_num[i] * pow(10, i+1));
-	}
-	result += digit_num[digit - 1];*/
-
-	return result;
+	return (a % 1000) * 10 + a / 1000;
 }
 
 int R(int a)
 {
-	int record = a;
-	int digit = 0;
-	int digit_num[4];
-	int result = 0;
-	while (a > 0)
-	{
-		digit_num[digit++] = a % 10;
-		a /= 10;
-	}
-	if (digit == 0) { return 0; }
-	
-	result += (digit_num[0] * pow(10, digit - 1));
-	result += (record / 10);
-
-	/*for (int i = 1; i < digit; i++)
-	{
-		result += (digit_num[i] * pow(10, i-1));
-	}
-	result += digit_num[0] * pow(10, digit - 1);*/
-
-	return result;
+	return (a / 10) + (a % 10) * 1000;
 }
 
 void bfs()
@@ -103,20 +62,17 @@ void bfs()
 					check[s] = true;
 					q.push(make_pair(s, temp.second + 'S'));
 				}
-				if (temp.first / 10 != 0)
+				int l = L(temp.first);
+				if (check[l] == false)
 				{
-					int l = L(temp.first);
-					if (check[l] == false)
-					{
-						check[l] = true;
-						q.push(make_pair(l, temp.second + 'L'));
-					}
-					int r = R(temp.first);
-					if (check[r] == false)
-					{
-						check[r] = true;
-						q.push(make_pair(r, temp.second + 'R'));
-					}
+					check[l] = true;
+					q.push(make_pair(l, temp.second + 'L'));
+				}
+				int r = R(temp.first);
+				if (check[r] == false)
+				{
+					check[r] = true;
+					q.push(make_pair(r, temp.second + 'R'));
 				}
 			}
 		}
