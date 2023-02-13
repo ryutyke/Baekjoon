@@ -1,53 +1,41 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
 using namespace std;
 
+int N, M;
+int* val;
 
-int n, m;
-vector<vector<int>> vv;
-
-void dfs(vector<int> v, int num, int cnt)
+void Backtracking(int cnt, int num)
 {
-	v.push_back(num);
-	if (v.size() == m)
+	//M개의 개수
+	if (cnt == M)
 	{
-		vv.push_back(v);
+		for (int i = 0; i < M; i++)
+			cout << val[i] << " ";
+		cout << '\n';
+
 		return;
 	}
-	else
+
+	for (int i = num; i < N; i++)
 	{
-		if (num + 1 > n)
-		{
-			return;
-		}
-	}
-	
-	for (int i = num+1; i <= n; i++)
-	{
-		dfs(v, i, cnt);
+		//수열 값 저장
+		val[cnt] = i + 1;
+
+		//재귀 함수
+		Backtracking(cnt + 1, i + 1);
 	}
 }
 
 int main()
 {
-	ios::sync_with_stdio(false); cin.tie(0);
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
 
-	cin >> n >> m;
+	cin >> N >> M;
 
-	vector<int> v1;
-	for (int i = 1; i <= n; i++)
-	{
-		dfs(v1, i, 0);
-	}
+	val = new int[N]();
 
-	for (vector<int> elem : vv)
-	{
-		for (int i = 0; i < m; i++)
-		{
-			cout << elem[i] << " ";
-		}
-		cout << "\n";
-	}
+	Backtracking(0, 0);
 
 	return 0;
 }
