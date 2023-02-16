@@ -24,14 +24,14 @@ long long fib(long long n) {
 	if (n == 1) return 1;
 	long long temp1, temp2;
 	long long result = 0;
-	if (n % 2 == 0) {	// Â¦¼ö
+	if (n % 2 == 0) {
 		if (m.find(n / 2) == m.end()) temp1 = fib(n / 2);
 		else temp1 = m[n / 2];
 		if (m.find(n / 2 - 1) == m.end()) temp2 = fib(n / 2 - 1);
 		else temp2 = m[n / 2 - 1];
 		result = ((2 * temp2 + temp1) % DIV * (temp1 % DIV)) % DIV;
 	}
-	else {				// È¦¼ö
+	else {
 		if (m.find(n / 2 + 1) == m.end()) temp1 = fib(n / 2 + 1);
 		else temp1 = m[n / 2 + 1];
 		if (m.find(n / 2) == m.end()) temp2 = fib(n / 2);
